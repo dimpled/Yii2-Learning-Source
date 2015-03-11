@@ -33,6 +33,9 @@ use yii\helpers\Html;
                    <li>
                        <?= Html::a('การติดตั้ง GridView + ExportMenu',['countries/index']); ?>
                    </li>
+                   <li>
+                       <?= Html::a('ใส่ Button Group ให้กับ ActionColumn ใน GridView',['countries/grid-button']); ?>
+                   </li>
                </ul>
 
                 

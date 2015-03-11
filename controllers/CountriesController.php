@@ -39,6 +39,17 @@ class CountriesController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }    
+
+    public function actionGridButton()
+    {
+        $searchModel = new CountriesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('change_grid_botton', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
