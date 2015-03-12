@@ -6,6 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    
     'modules' => [
        'gridview' =>  [
             'class' => '\kartik\grid\Module'
@@ -17,6 +18,18 @@ $config = [
         ]
     ],
     'components' => [
+    'urlManager' => [
+       'class' => 'yii\web\UrlManager',
+       // Disable index.php
+       'showScriptName' => false,
+       // Disable r= routes
+       'enablePrettyUrl' => true,
+       'rules' => array(
+               '<controller:\w+>/<id:\d+>' => '<controller>/view',
+               '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+               '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+       ),
+    ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'mldcOhzqWMRgnEnGwqMKxIaiUJHiL_te',
