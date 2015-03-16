@@ -91,6 +91,19 @@ class SiteController extends Controller
 
     public function actionAbout()
     {
-        return $this->render('about');
+        $actions = [
+            'index' => ['GET', 'HEAD'],
+            'view' => ['GET', 'HEAD'],
+            'create' => ['POST'],
+            'update' => ['PUT', 'PATCH'],
+            'delete' => ['DELETE'],
+        ];
+        $action = "view";
+        $verbs = '';
+        if (isset($actions[$action])) {
+            $verbs = $actions[$action];
+        }
+        print_r($verbs);
+       // return $this->render('about');
     }
 }
