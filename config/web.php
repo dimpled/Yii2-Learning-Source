@@ -18,6 +18,10 @@ $config = [
         ]
     ],
     'components' => [
+        'image' => [
+                'class' => 'yii\image\ImageDriver',
+                'driver' => 'GD',  //GD or Imagick
+        ],
         'urlManager' => [
            'class' => 'yii\web\UrlManager',
            // Disable index.php
