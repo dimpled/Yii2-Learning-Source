@@ -1,7 +1,12 @@
 <?php
+/**
+ * @author Satit Seethaphon<dixonsatit@gmail.com>
+ * @link https://github.com/dimpled/Yii2-Learning/blob/master/tutorial/create-form.md
+ */
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Employee;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Employee */
@@ -12,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="employee-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>View <?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->emp_id], ['class' => 'btn btn-primary']) ?>
@@ -28,32 +33,35 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'emp_id',
-            'sex',
-            'title',
-            'name',
-            'surname',
+            //'emp_id',
+            ['attribute'=>'sex','value'=>$model->sex===null?'':Employee::itemAlias('sex',$model->sex)],
+            ['label'=>'ชื่อ-นามสกุล','value'=>$model->getFullname()],
+            // 'title',
+            // 'name',
+            // 'surname',
             'address:ntext',
             'zip_code',
-            'birthday',
+            //'birthday',
+             ['attribute'=>'birthday','format'=>'html','value'=>Yii::$app->formatter->asDate($model->birthday,'medium')],
             'email:email',
-            'mobile_phone',
-            'modify_date',
-            'create_date',
+            'mobile_phone',          
             'position',
-            'salary',
-            'expire_date',
+            'salary',          
             'website:url',
             'skill',
             'countries',
             'age',
             'experience',
             'personal_id',
-            'marital',
+            ['attribute'=>'sex','value'=>$model->marital===null?'':Employee::itemAlias('marital',$model->marital)],
             'province',
             'amphur',
             'district',
             'social',
+             ['attribute'=>'resume','format'=>'html','value'=>!$model->resume?'':Html::a('ดาวน์โหลด', ['/employee/download','type'=>'resume','id'=>$model->emp_id])],
+            'expire_date',
+            'create_date',
+            'modify_date',
         ],
     ]) ?>
 

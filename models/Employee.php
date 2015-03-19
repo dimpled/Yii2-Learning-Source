@@ -1,9 +1,15 @@
 <?php
+/**
+ * @author Satit Seethaphon<dixonsatit@gmail.com>
+ * @link https://github.com/dimpled/Yii2-Learning/blob/master/tutorial/create-form.md
+ */
 
 namespace app\models;
 
 use Yii;
 use yii\helpers\Url;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "employee".
@@ -43,19 +49,33 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
-            [['emp_id', 'salary','province','amphur','district','marital','sex','age'], 'integer'],
+            [['title','name','surname','sex'], 'required'],
+            [['emp_id', 'salary','province','amphur','district','marital','sex','age','count_download_resume'], 'integer'],
             [['address'], 'string'],
-            [['birthday', 'modify_date', 'create_date', 'expire_date','social'], 'safe'],
+            [['birthday', 'modify_date', 'create_date', 'expire_date','social','skill'], 'safe'],
             [['title'], 'string', 'max' => 50],
             [['name', 'surname', 'email','token_forupload'], 'string', 'max' => 100],
             [['zip_code','countries','experience'], 'string', 'max' => 10],
             [['mobile_phone','personal_id'], 'string', 'max' => 20],
             [['website','position'], 'string', 'max' => 150],
-            [['skill'], 'string', 'max' => 255],
+            //[['skill'], 'string', 'max' => 255],
             [['resume'],'file'],
             [['email'],'email'],
             [['website'],'url']
+        ];
+    }
+
+
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'create_date',
+                'updatedAtAttribute' => 'modify_date',
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 
@@ -90,25 +110,31 @@ class Employee extends \yii\db\ActiveRecord
             'marital'=> 'สถานะสมรศ',
             'province'=>'จังหวัด',
             'amphur'=>'อำเภอ',
-            'district'=> 'ตำบล'
+            'district'=> 'ตำบล',
+            'resume'=>'ไฟล์ประวัติส่วนตัว (pdf)'
         ];
     }
 
-    public function getSocialArray()
-    {
-        return explode(',', $this->social);
+    public function getFullname(){
+        return $this->title.$this->name.' '.$this->surname;
     }
 
-    public function setSocialArray(array $value)
+    public function getArray($value)
     {
-        $this->social = implode(',', $value);
+        return explode(',', $value);
+    }
+
+    public function setToArray($value)
+    {   
+        return is_array($value)?implode(',', $value):NULL;
     }
 
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
             if(!empty($this->social)){
-                $this->setSocialArray($this->social);
+                $this->social = $this->setToArray($this->social);
+                $this->skill = $this->setToArray($this->skill);
             }
             return true;
         } else {
@@ -129,25 +155,52 @@ class Employee extends \yii\db\ActiveRecord
                 '4' => 'แยกกันอยู่',
                 '5' => 'หมา้ย',
             ),
-            'social' => array(
+            'skill'=>[
+                'Objective C'=>'Objective C',
+                'Python'=>'Python',
+                'Java'=>'Java',
+                'JavaScript'=>'JavaScript',
+                'PHP'=>'PHP',
+                'SQL'=>'SQL',
+                'Ruby'=>'Ruby',
+                'FoxPro'=>'FoxPro',
+                'C++'=>'C++',
+                'C'=>'C',
+                'ASP'=>'ASP',
+                'Assembly'=>'Assembly',
+                'Visual Basic'=>'Visual Basic'
+            ],
+            'social' => [
                 'facebook' => 'Facebook',
                 'twiter' => 'Twiter',
                 'google+' => 'Google+',
                 'tumblr' => 'Tumblr'
-            ),
+            ],
         );
-        if (isset($code))
+        
+
+        if (isset($code)){
             return isset($_items[$type][$code]) ? $_items[$type][$code] : false;
-        else
-            return isset($_items[$type]) ? $_items[$type] : false;
+        }
+        else{         
+            return isset($_items[$type]) ? $_items[$type] : false;    
+        }
     }
 
     public static function getUploadPath(){
-        return Yii::getAlias('@web').'/'.self::UPLOAD_PATH;
+        return Yii::getAlias('@webroot').'/'.self::UPLOAD_PATH;
     }
 
     public static function getUploadUrl(){
         return Url::base(true).'/'.self::UPLOAD_PATH;
+    }
+
+    public static function getResumePath(){
+        return Yii::getAlias('@webroot').'/'.self::RESUME_PATH;
+    }
+
+    public static function getResumeUrl(){
+        return Url::base(true).'/'.self::RESUME_PATH;
     }
 
 }

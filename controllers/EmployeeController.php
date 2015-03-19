@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Satit Seethaphon<dixonsatit@gmail.com>
+ * @link https://github.com/dimpled/Yii2-Learning/blob/master/tutorial/create-form.md
+ */
 
 namespace app\Controllers;
 
@@ -114,7 +118,8 @@ class EmployeeController extends Controller
     {
         $model          = $this->findModel($id);
 
-        $model->social  = $model->getSocialArray();
+        $model->social  = $model->getArray($model->social);
+        $model->skill  = $model->getArray($model->skill);
 
         $amphur         = ArrayHelper::map($this->getAmphur($model->province),'id','name');
         $district       = ArrayHelper::map($this->getDistrict($model->amphur),'id','name');
@@ -165,7 +170,16 @@ class EmployeeController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        //remove upload file & data
+        $this->removeUploadDir($model->token_forupload);
+        Uploads::deleteAll(['ref'=>$model->token_forupload]);
+        // remove resume file
+        $resume  = Employee::getResumePath().'/'.$model->resume;
+        @unlink($resume);
+
+        $model->delete();
+        
 
         return $this->redirect(['index']);
     }
@@ -234,17 +248,28 @@ class EmployeeController extends Controller
     }
 
 
-    /**=========================================================================================
-       ********************************* Upload Ajax *******************************************
-     * =========================================================================================**/
+/*|******************************************************************************************|
+  |==================================== Upload File =========================================|
+/*|******************************************************************************************|*/
+      public function actionDownload($type,$id){
+        $model = $this->findModel($id);
+        if($type==='resume'){
+            Yii::$app->response->sendFile($model->getResumePath().'/'.$model->resume);
+            $model->count_download_resume +=1;
+            $model->save();
+        }
+        
+      }
 
       public function actionDeletefile(){
 
         $model = Uploads::findOne(Yii::$app->request->post('key'));
         if($model!==NULL){
-            $filename = Yii::getAlias('@web').'/uploads/'.$model->real_filename;
+            $filename  = Employee::getUploadPath().'/'.$model->ref.'/'.$model->real_filename;
+            $thumbnail = Employee::getUploadPath().'/'.$model->ref.'/thumbnail/'.$model->real_filename;
             if($model->delete()){
                 @unlink($filename);
+                @unlink($thumbnail);
                 echo json_encode(['success'=>true]);
             }else{
                 echo json_encode(['success'=>false]);
@@ -257,6 +282,10 @@ class EmployeeController extends Controller
       public function actionUpload()
       {
            $this->Uploads(true);
+      }
+
+      private function removeUploadDir($dir){
+        BaseFileHelper::removeDirectory(Employee::getUploadPath().'/'.$dir);
       }
 
       private function Uploads($isAjax=false) {
@@ -306,7 +335,7 @@ class EmployeeController extends Controller
         
         private function CreateDir($folderName){
             if($folderName!=NULL){
-                $basePath = Yii::getAlias('@webroot').'/'.Employee::UPLOAD_PATH.'/';
+                $basePath = Employee::getUploadPath().'/';
                 if(BaseFileHelper::createDirectory($basePath.$folderName,0777)){
                     BaseFileHelper::createDirectory($basePath.$folderName.'/thumbnail',0777);
                 }
@@ -315,7 +344,7 @@ class EmployeeController extends Controller
         }
 
         private function createThumbnail($folderName,$fileName,$width=250){
-          $uploadPath   = Yii::getAlias('@webroot').'/'.Employee::UPLOAD_PATH.'/'.$folderName.'/'; 
+          $uploadPath   = Employee::getUploadPath().'/'.$folderName.'/'; 
           $file         = $uploadPath.$fileName;
           $image        = Yii::$app->image->load($file);
 
@@ -341,9 +370,8 @@ class EmployeeController extends Controller
         }
 
         private function getTemplatePreview(Uploads $model){     
-            $filePath = Url::base(true).'/uploads/'.$model->ref.'/thumbnail/'.$model->real_filename;
+            $filePath = Employee::getUploadUrl().'/'.$model->ref.'/thumbnail/'.$model->real_filename;
             $isImage  = $this->isImage($filePath);
-            //$ext = pathinfo($fileName, PATHINFO_EXTENSION);
             if($isImage){
                 $file = Html::img($filePath,['class'=>'file-preview-image', 'alt'=>$model->file_name, 'title'=>$model->file_name]);
             }else{
