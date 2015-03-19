@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Satit Seethaphon<dixonsatit@gmail.com>
+ * @link https://github.com/dimpled/Yii2-Learning/blob/master/tutorial/create-form.md
+ */
 
 use yii\helpers\Html;
 
@@ -7,7 +11,7 @@ use yii\helpers\Html;
 
 $this->title = 'Update Employee: ' . ' ' . $model->emp_id;
 $this->params['breadcrumbs'][] = ['label' => 'Employees', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->emp_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->getFullname(), 'url' => ['view', 'id' => $model->emp_id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="employee-update">

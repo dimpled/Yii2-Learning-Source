@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Satit Seethaphon<dixonsatit@gmail.com>
+ * @link https://github.com/dimpled/Yii2-Learning/blob/master/tutorial/create-form.md
+ */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -30,9 +34,8 @@ use yii\helpers\VarDumper;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
    
-   <?= $form->errorSummary($model); ?>
+<?= $form->errorSummary($model); ?>
     
-
 <div class="page-header">
   <h4>ข้อมูลส่วนตัว </h4>
 </div>
@@ -55,25 +58,23 @@ use yii\helpers\VarDumper;
 
 <div class="row">
     <div class="col-xs-6 col-sm-4 col-md-4">
-    <?= $form->field($model, 'birthday')->widget(DatePicker::classname(), [
-      'language' => 'th',
-      'dateFormat' => 'yyyy-MM-dd',
-      
-      'clientOptions'=>[
-      'changeMonth'=>true,
-      'changeYear'=>true,
-      ],
-      
-      'options'=>['class'=>'form-control']
-    ]) ?>
+     <?= $form->field($model, 'sex')->inline()->radioList(Employee::itemAlias('sex')) ?>
     </div>
 
     <div class="col-xs-6 col-sm-4 col-md-4">
-        <?= $form->field($model, 'age')->textInput() ?>
+      <?= $form->field($model, 'birthday')->widget(DatePicker::classname(), [
+        'language' => 'th',
+        'dateFormat' => 'yyyy-MM-dd',
+        'clientOptions'=>[
+          'changeMonth'=>true,
+          'changeYear'=>true,
+        ],
+        'options'=>['class'=>'form-control']
+      ]) ?>
     </div>
 
     <div class="col-xs-12 col-sm-4 col-md-4">
-       <?= $form->field($model, 'sex')->inline()->radioList(Employee::itemAlias('sex')) ?>
+      <?= $form->field($model, 'age')->textInput() ?>
     </div>
 </div>
 
@@ -196,12 +197,20 @@ use yii\helpers\VarDumper;
 
     <?= $form->field($model, 'social')->inline()->checkboxList(Employee::itemAlias('social')) ?>
 
-    <?= $form->field($model, 'skill')->textInput(['maxlength' => 255]) ?>
+  <?= $form->field($model, 'skill')->widget(Select2::classname(), [
+        'language' => 'de',
+        'data' => Employee::itemAlias('skill'),
+        'options' => ['multiple'=>true, 'placeholder' => 'เลือกความสามารถ ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>
 
     <?=  $form->field($model, 'resume')->widget(FileInput::classname(), [
     //'options' => ['accept' => 'image/*'],
     'pluginOptions' => [
-         'initialPreview'=>$model->isNewRecord?[]:[
+         'initialPreview'=>empty($model->resume)?[]:[
             Yii::getAlias('@web').'/resumes/'.$model->resume,
          ],
         'allowedFileExtensions'=>['pdf'],
@@ -212,14 +221,17 @@ use yii\helpers\VarDumper;
      ]
     ]); ?>
 
-     <?= FileInput::widget([
+<div class="form-group field-upload_files">
+  <label class="control-label" for="upload_files[]"> อัพโหลดไฟล์ต่างๆ </label>
+<div>
+<?= FileInput::widget([
                'name' => 'upload_files[]',
-               'options' => ['multiple' => true],//'accept' => 'image/*'
+               'options' => ['multiple' => true], //'accept' => 'image/*' หากต้องเฉพาะ image
                 'pluginOptions' => [
                     'overwriteInitial'=>false,
                     'initialPreviewShowDelete'=>true,
-                    'initialPreview'=>$initialPreview,
-                    'initialPreviewConfig'=>$initialPreviewConfig,
+                    'initialPreview'=> $initialPreview,
+                    'initialPreviewConfig'=> $initialPreviewConfig,
                     'previewFileType' => 'any',
                     'uploadUrl' => Url::to(['/employee/upload']),
                     'uploadExtraData' => [
@@ -229,10 +241,14 @@ use yii\helpers\VarDumper;
                 ]
             ]);
             ?>
+</div>
+</div>
+
+     
 
 <br>
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => ($model->isNewRecord ? 'btn btn-success' : 'btn btn-primary').' btn-lg btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

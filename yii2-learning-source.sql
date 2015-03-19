@@ -11,7 +11,7 @@
  Target Server Version : 50622
  File Encoding         : utf-8
 
- Date: 03/19/2015 13:10:04 PM
+ Date: 03/20/2015 01:46:34 AM
 */
 
 SET NAMES utf8;
@@ -116,6 +116,7 @@ CREATE TABLE `employee` (
   `social` varchar(150) DEFAULT NULL COMMENT 'ใช้ social network อะไรบ้าง',
   `resume` varchar(100) DEFAULT NULL COMMENT 'ไฟล์ resume',
   `token_forupload` varchar(100) DEFAULT NULL,
+  `count_download_resume` int(11) DEFAULT NULL COMMENT 'นับจำนวนที่ download resume',
   PRIMARY KEY (`emp_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -123,7 +124,7 @@ CREATE TABLE `employee` (
 --  Records of `employee`
 -- ----------------------------
 BEGIN;
-INSERT INTO `employee` VALUES ('1', '1', 'นาย', 'สาธิต', 'สีถาพล', '44/54 ม.2 หมู่บ้านกัลยารัตน์ 3 ถนน ชาตะผดุง', '40000', '2015-03-19', 'dixonsatit@gmail.com', '08-4953-7900', '2015-03-19 12:49:00', null, 'นักวิชาการคอมพิวเตอร์', '43000', null, 'http://www.dimpled.me', 'php,yii framework,AngularJs, node.js, ', 'TH', '31', '7ปี', '1409900000000', '2', '28', '393', '3491', 'facebook,twiter,google+,tumblr', '07bbdaf59ae9290d9cdbf6093773bb9d.pdf', 'SEx7ZjGf5_CmFhALy6uOVn'), ('2', '1', 'นาย', 'สาธิต', 'สีถาพล', '44/54 ม.2 หมู่บ้านกัลยารัตน์ 3 ถนน ชาตะผดุง', '40000', '1984-02-19', 'dixon14x4@hotmail.com', '08-4953-7900', '2015-03-19 13:07:52', null, 'นักวิชาการคอมพิวเตอร์', '43000', null, 'http://www.dimpled.me', '', 'TH', '31', '8ปี', '', '2', '28', '393', '3491', 'facebook,twiter', null, 'A9giVTGuimeoMsVBZlhc_9');
+INSERT INTO `employee` VALUES ('1', '1', 'นางสาว', 'สาธิต', 'สีถาพล', '44/54 ม.2 หมู่บ้านกัลยารัตน์ 3 ถนน ชาตะผดุง', '40000', '2015-03-20', 'dixonsatit@gmail.com', '09-1419-2801', '2015-03-20 01:45:51', '2015-03-20 01:26:04', 'นักวิชาการคอมพิวเตอร์', '6363663', null, 'http://www.dimpled.me', 'Objective C,JavaScript,SQL,C++,C,Assembly', 'US', '31', '7 ปี', '6474748484848', '2', '28', '393', '3491', 'facebook,twiter,google+,tumblr', '8cc147dfb163f6c57a1f9b5a6853a091.pdf', 'iOOxVkSwrurplsO0DicB-K', null);
 COMMIT;
 
 -- ----------------------------
@@ -206,13 +207,13 @@ CREATE TABLE `uploads` (
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `type` int(11) DEFAULT NULL COMMENT 'ประเภท',
   PRIMARY KEY (`upload_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `uploads`
 -- ----------------------------
 BEGIN;
-INSERT INTO `uploads` VALUES ('1', 'SEx7ZjGf5_CmFhALy6uOVn', 'DSC05017.jpg', 'b06404263fc11329e161fb7fbcea2d62.jpg', '2015-03-19 12:42:55', null), ('2', 'A9giVTGuimeoMsVBZlhc_9', 'IMG_7239.jpg', 'ec0cf0d333deb252c63651c48140dc2b.jpg', '2015-03-19 12:58:10', null), ('3', 'A9giVTGuimeoMsVBZlhc_9', 'DSC05017.jpg', 'ad509596a21f2bb99191f321004f0aa7.jpg', '2015-03-19 12:58:10', null), ('4', 'A9giVTGuimeoMsVBZlhc_9', 'dimpos-hompage.png', 'fbe0dc0e2a75ac5ad68b41362af6f778.png', '2015-03-19 12:58:38', null), ('5', 'A9giVTGuimeoMsVBZlhc_9', 'IMG_7239.jpg', '628eb5fa92364793957efc0dacc21696.jpg', '2015-03-19 12:59:00', null), ('6', 'A9giVTGuimeoMsVBZlhc_9', 'DSC05019.jpg', '670e6c8ea00b0d4b94a36b46e5e3b9c4.jpg', '2015-03-19 12:59:21', null), ('8', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02905.jpg', '248cf2e5154d9068c4a58bcf1a1be2e8.jpg', '2015-03-19 13:05:24', null), ('9', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02908.jpg', '319b70f3d8f9575d315e016c24aabe29.jpg', '2015-03-19 13:05:24', null), ('10', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02906.jpg', '6b472aebb71796178ae2f89e05d6fbe8.jpg', '2015-03-19 13:05:24', null), ('11', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02904.jpg', '3afeb32877ffcca24d668f91886098ff.jpg', '2015-03-19 13:05:24', null), ('12', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02903.jpg', 'a3846d6ccb2e7a9a767eec4905eab302.jpg', '2015-03-19 13:05:24', null), ('13', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02907.jpg', '3b4064c01a119a908e488faf0af1823f.jpg', '2015-03-19 13:05:24', null), ('14', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02910.jpg', 'f8b0b0c1059ef61d79724e4b36e21490.jpg', '2015-03-19 13:05:27', null), ('15', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02909.jpg', '02c7ed5181b3d1e584272a986a7af312.jpg', '2015-03-19 13:05:27', null), ('16', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02911.jpg', '8b64796fcd73bddf466fb56e75c49cd3.jpg', '2015-03-19 13:05:27', null), ('17', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02914.jpg', '3e5e272b8e1621b9a773023d6739796c.jpg', '2015-03-19 13:05:27', null), ('18', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02913.jpg', '062631283653685909343a71cda21538.jpg', '2015-03-19 13:05:27', null), ('19', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02912.jpg', '241dcb7d23b90c36c441c8cd6b6d9c62.jpg', '2015-03-19 13:05:27', null), ('20', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02915.jpg', 'b88b5fe63613646cc3b2ecf0fe44e034.jpg', '2015-03-19 13:05:30', null), ('21', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02916.jpg', 'bb789e256c0d0af85d96fe589c54d182.jpg', '2015-03-19 13:05:30', null), ('22', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03065.jpg', 'd668dc8fa9e89c5c20b210c6d28100ad.jpg', '2015-03-19 13:05:31', null), ('23', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02920.jpg', 'c3142702b05ef3b617436859d5e1f692.jpg', '2015-03-19 13:05:31', null), ('24', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03122.jpg', 'ef6e50ae2a9c635a99e87d4a91d0cf36.jpg', '2015-03-19 13:05:31', null), ('25', 'A9giVTGuimeoMsVBZlhc_9', 'DSC02919.jpg', 'c2aca06b590462aa4eb1992725c029cd.jpg', '2015-03-19 13:05:31', null), ('26', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03123.jpg', 'beb85fae9f6d2e54a8e6d8c63eb7bb92.jpg', '2015-03-19 13:05:33', null), ('27', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03186.jpg', '9d4ccaa199607d5bc42d85fa0d0049d4.jpg', '2015-03-19 13:05:33', null), ('28', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03275.jpg', '6dfbc9ff7da7128324d83d1210cc45eb.jpg', '2015-03-19 13:05:34', null), ('29', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03269.jpg', 'f83b73ac6027f24d53fb1afabfdc9895.jpg', '2015-03-19 13:05:34', null), ('30', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03283.jpg', 'adad36983e36902813fb8ab884f4f396.jpg', '2015-03-19 13:05:34', null), ('31', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03285.jpg', '2ea783b870edc287bec568728544cef8.jpg', '2015-03-19 13:05:34', null), ('32', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03286.jpg', '2a7312b0d3dd078a083411ba583d7cec.jpg', '2015-03-19 13:05:36', null), ('33', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03289.jpg', '93c192fbdd11618d2f04f7f7faf1def9.jpg', '2015-03-19 13:05:36', null), ('34', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03290.jpg', '1ce101ea0cbdb658834675028a0e3f47.jpg', '2015-03-19 13:05:36', null), ('35', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03295.jpg', 'cc2e648b9f74ef7d13c0d36df4e9bdee.jpg', '2015-03-19 13:05:36', null), ('36', 'A9giVTGuimeoMsVBZlhc_9', 'DSC03307.jpg', 'b550edfaa25a3db26ca260597f0089f5.jpg', '2015-03-19 13:05:36', null);
+INSERT INTO `uploads` VALUES ('1', 'iOOxVkSwrurplsO0DicB-K', '6800806544_9e6a68e358_k.jpg', '2426b464a7257475646edb778e887ab2.jpg', '2015-03-20 01:25:32', null), ('2', 'iOOxVkSwrurplsO0DicB-K', '6946914191_620c84376d_k.jpg', '54d2710a3bd933c5ca6671b08b7c1b5a.jpg', '2015-03-20 01:25:37', null), ('4', 'iOOxVkSwrurplsO0DicB-K', 'DSC05017.jpg', 'e10338ba8bac7041bdd357cb915018b0.jpg', '2015-03-20 01:26:04', null), ('15', 'iOOxVkSwrurplsO0DicB-K', 'dimpos-hompage.png', 'ed7d6a1fbbba23106fda116810570a19.png', '2015-03-20 01:36:32', null);
 COMMIT;
 
 -- ----------------------------
