@@ -118,11 +118,11 @@ class EmployeeController extends Controller
     {
         $model          = $this->findModel($id);
 
-        $model->social  = $model->getArray($model->social);
-        $model->skill  = $model->getArray($model->skill);
-
         $amphur         = ArrayHelper::map($this->getAmphur($model->province),'id','name');
         $district       = ArrayHelper::map($this->getDistrict($model->amphur),'id','name');
+
+        $model->social  = $model->getArray($model->social);
+        $model->skill  = $model->getArray($model->skill);
 
         $tempResume     = $model->resume;
 
@@ -205,8 +205,8 @@ class EmployeeController extends Controller
         if (isset($_POST['depdrop_parents'])) {
             $parents = $_POST['depdrop_parents'];
             if ($parents != null) {
-                $cat_id = $parents[0];
-                $out = $this->getAmphur($cat_id);
+                $province_id = $parents[0];
+                $out = $this->getAmphur($province_id);
                 echo Json::encode(['output'=>$out, 'selected'=>'']);
                 return;
             }
