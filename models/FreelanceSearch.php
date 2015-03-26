@@ -19,7 +19,7 @@ class FreelanceSearch extends Freelance
     {
         return [
             [['id'], 'integer'],
-            [['ref', 'title', 'description', 'covenant', 'docs', 'start_date', 'end_date', 'succes_date', 'create_date'], 'safe'],
+            [['ref', 'title', 'description', 'covenant', 'docs', 'start_date', 'end_date', 'success_date', 'create_date'], 'safe'],
         ];
     }
 
@@ -59,7 +59,7 @@ class FreelanceSearch extends Freelance
             'id' => $this->id,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
-            'succes_date' => $this->succes_date,
+            'success_date' => $this->success_date,
             'create_date' => $this->create_date,
         ]);
 

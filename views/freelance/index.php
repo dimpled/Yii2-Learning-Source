@@ -14,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::a('Create Freelance', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -31,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'covenant',
             // 'docs:ntext',
             
-            // 'succes_date',
+            // 'success_date',
             //'create_date:date',
 
             ['class' => 'yii\grid\ActionColumn'],

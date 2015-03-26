@@ -23,7 +23,8 @@
         "kartik-v/yii2-export": "*",
         "kartik-v/yii2-mpdf": "*",
         "yiisoft/yii2-jui": "~2.0.0",
-        "yurkinx/yii2-image": "dev-master"
+        "yurkinx/yii2-image": "dev-master",
+        "2amigos/yii2-date-picker-widget" : "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

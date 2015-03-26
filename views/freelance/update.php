@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model app\models\Freelance */
 
@@ -9,6 +9,7 @@ $this->title = 'Update Freelance: ' . ' ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Freelances', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
+
 ?>
 <div class="freelance-update">
 
@@ -16,6 +17,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'initialPreview'=>$initialPreview,
+        'initialPreviewConfig'=>$initialPreviewConfig
     ]) ?>
 
 </div>

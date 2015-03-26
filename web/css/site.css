@@ -89,3 +89,9 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+.file-preview-other {
+    padding-top: 0!important;
+    min-width:100px;
+    text-align: center;
+}

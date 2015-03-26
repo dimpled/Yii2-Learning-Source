@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\modeles\Freelance;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Freelance */
@@ -24,19 +25,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'ref',
             'title',
             'description:ntext',
-            'covenant',
-            'docs:ntext',
+            ['attribute'=>'covenant','value'=>$model->listDownloadFiles('covenant'),'format'=>'html'],
+            ['attribute'=>'docs','value'=>$model->listDownloadFiles('docs'),'format'=>'html'],
             'start_date',
             'end_date',
-            'succes_date',
+            'success_date',
             'create_date',
         ],
     ]) ?>

@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'end_date') ?>
 
-    <?php // echo $form->field($model, 'succes_date') ?>
+    <?php // echo $form->field($model, 'success_date') ?>
 
     <?php // echo $form->field($model, 'create_date') ?>
 
