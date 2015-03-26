@@ -163,7 +163,7 @@ use yii\helpers\VarDumper;
     </div>
 
     <div class="col-sm-4 col-md-4">
-      <?= $form->field($model, 'countries')->widget(Select2::classname(), [
+  <?= $form->field($model, 'countries')->widget(Select2::classname(), [
         'language' => 'de',
         'data' => ArrayHelper::map(Countries::find()->all(),'country_code','country_name'),
         'options' => ['placeholder' => 'เลือกประเทศ ...'],
@@ -243,8 +243,6 @@ use yii\helpers\VarDumper;
             ?>
 </div>
 </div>
-
-     
 
 <br>
     <div class="form-group">
