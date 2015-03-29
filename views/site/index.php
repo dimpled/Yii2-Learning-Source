@@ -45,8 +45,10 @@ use yii\helpers\Html;
             <div class="col-lg-4">
                 <h2>Tutorial</h2>
                 <ul>
-                   <li><?= Html::a('ตัวอย่างการสร้าง from และการ upload',['/employee/index']); ?></li>
-                   <li><?= Html::a('ตัวอย่างการสร้าง web service ',['/location']); ?></li>
+                   <li><?= Html::a('การสร้าง from และการ upload',['/employee/index']); ?></li>
+                   <li><?= Html::a('การสร้าง web service ',['/location']); ?></li>
+                   <li><?= Html::a('การสร้าง Upload File เก็บข้อมูลด้วย json ',['/freelance']); ?></li>
+                    <li><?= Html::a('สร้างฟอร์ม Upload Files ด้วย AJAXเก็บข้อมูลด้วย json ',['/photo-library']); ?></li>
                </ul>
             </div>
         </div>
