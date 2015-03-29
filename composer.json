@@ -17,14 +17,15 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*",
-        "kartik-v/yii2-widgets": "*",
+        "yiisoft/yii2-swiftmailer": "*",      
         "kartik-v/yii2-grid": "*",
         "kartik-v/yii2-export": "*",
         "kartik-v/yii2-mpdf": "*",
         "yiisoft/yii2-jui": "~2.0.0",
+        "kartik-v/yii2-widgets": "*",
         "yurkinx/yii2-image": "dev-master",
-        "2amigos/yii2-date-picker-widget" : "~1.0"
+        "2amigos/yii2-date-picker-widget" : "~1.0",
+        "2amigos/yii2-gallery-widget" : "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -91,29 +91,6 @@ use kartik\date\DatePicker;
         </div>
     </div>
 
-    <div class="form-group field-upload_files">
-  <label class="control-label" for="upload_files[]"> อัพโหลดไฟล์ต่างๆ </label>
-<div>
-<?= FileInput::widget([
-               'name' => 'upload_ajax[]',
-               'options' => ['multiple' => true,'accept' => 'image/*'], //'accept' => 'image/*' หากต้องเฉพาะ image
-                'pluginOptions' => [
-                    'overwriteInitial'=>false,
-                    'initialPreviewShowDelete'=>true,
-                   'initialPreview'=> $initialPreview,
-                    'initialPreviewConfig'=> $initialPreviewConfig,
-                    'previewFileType' => 'any',
-                    'uploadUrl' => Url::to(['/freelance/upload-ajax']),
-                    'uploadExtraData' => [
-                        'ref' => $model->ref,
-                    ],
-                    'maxFileCount' => 100
-                ]
-            ]);
-            ?>
-</div>
-</div>
-
     <div class="form-group">
         <?= Html::submitButton('<i class="glyphicon glyphicon-plus"></i> '.($model->isNewRecord ? 'Create' : 'Update'), ['class' => ($model->isNewRecord ? 'btn btn-success' : 'btn btn-primary').' btn-lg btn-block']) ?>
     </div>
