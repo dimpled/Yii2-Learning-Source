@@ -10,6 +10,9 @@ use Yii;
 use yii\helpers\Url;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use app\models\Province;
+use app\models\District;
+use app\models\Amphur;
 
 /**
  * This is the model class for table "employee".
@@ -111,13 +114,16 @@ class Employee extends \yii\db\ActiveRecord
             'province'=>'จังหวัด',
             'amphur'=>'อำเภอ',
             'district'=> 'ตำบล',
-            'resume'=>'ไฟล์ประวัติส่วนตัว (pdf)'
+            'resume'=>'ไฟล์ประวัติส่วนตัว (pdf)',
+            // virtual attribute
+            'fullName'=>'ชื่อ-นามสกุล',
+            'provinceName'=>'จังหวัด',
+            'amphurName'=>'อำเภอ',
+            'districtName'=>'ตำบล'
         ];
     }
 
-    public function getFullname(){
-        return $this->title.$this->name.' '.$this->surname;
-    }
+
 
     public function getArray($value)
     {
@@ -202,5 +208,35 @@ class Employee extends \yii\db\ActiveRecord
     public static function getResumeUrl(){
         return Url::base(true).'/'.self::RESUME_PATH;
     }
+
+
+    // Inverse Relations  & Virtual attribute
+
+    public function getFullname(){
+        return $this->title.$this->name.' '.$this->surname;
+    }
+
+    public function getProvinces(){
+        return @$this->hasOne(Province::className(),['PROVINCE_ID'=>'province']);
+    }
+    public function getProvinceName(){
+        return @$this->provinces->PROVINCE_NAME;
+    }
+
+    public function getAmphurs(){
+        return @$this->hasOne(Amphur::className(),['AMPHUR_ID'=>'province']);
+    }
+    public function getAmphurName(){
+        return @$this->amphurs->AMPHUR_NAME;
+    }
+
+    public function getDistricts(){
+        return @$this->hasOne(District::className(),['DISTRICT_ID'=>'province']);
+    }
+    public function getDistrictName(){
+        return @$this->districts->DISTRICT_NAME;
+    }
+
+
 
 }

@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'emp_id',
             ['attribute'=>'sex','value'=>$model->sex===null?'':Employee::itemAlias('sex',$model->sex)],
             ['label'=>'ชื่อ-นามสกุล','value'=>$model->getFullname()],
+            'fullName',
             // 'title',
             // 'name',
             // 'surname',
@@ -54,9 +55,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'experience',
             'personal_id',
             ['attribute'=>'sex','value'=>$model->marital===null?'':Employee::itemAlias('marital',$model->marital)],
-            'province',
-            'amphur',
-            'district',
+            //Inverse Relations Model
+            'provinces.PROVINCE_NAME',
+            'amphurs.AMPHUR_NAME',
+            'districts.DISTRICT_NAME',
+            //Virtual Attribute
+            'provinceName',
+            'amphurName',
+            'districtName',
+
             'social',
              ['attribute'=>'resume','format'=>'html','value'=>!$model->resume?'':Html::a('ดาวน์โหลด', ['/employee/download','type'=>'resume','id'=>$model->emp_id])],
             'expire_date',
