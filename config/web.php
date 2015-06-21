@@ -7,7 +7,9 @@ $config = [
     'language'=>'th',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    
+    'aliases'=>[
+        '@agency' => '@app/themes/agency',
+    ],
     'modules' => [
        'gridview' =>  [
             'class' => '\kartik\grid\Module'
@@ -19,6 +21,14 @@ $config = [
         ]
     ],
     'components' => [
+        'view' => [
+             'theme' => [
+                 'pathMap' => [
+                    '@app/views' => '@agency/views', // uncomment active agency theme
+                    //'@app/views' => '@app/themes/adminlte' // uncomment active adminlte theme
+                 ],
+             ],
+        ],
         'image' => [
                 'class' => 'yii\image\ImageDriver',
                 'driver' => 'GD',  //GD or Imagick

@@ -7,6 +7,9 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\Employee;
+use app\models\Province;
+
+echo Province::findOne(['PROVINCE_ID'=>12])->PROVINCE_NAME;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Employee */
@@ -59,6 +62,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'provinces.PROVINCE_NAME',
             'amphurs.AMPHUR_NAME',
             'districts.DISTRICT_NAME',
+            //เรียกแบบธรรมดา ไม่แนะนำ
+            [
+                'attribute'=>'province',
+                'value'=>@Province::findOne(['PROVINCE_ID'=>$model->province])->PROVINCE_NAME
+            ],
             //Virtual Attribute
             'provinceName',
             'amphurName',

@@ -4,7 +4,7 @@
  * @link https://github.com/dimpled/Yii2-Learning/blob/master/tutorial/create-form.md
  */
 
-namespace app\Controllers;
+namespace app\controllers;
 
 use Yii;
 

@@ -25,7 +25,9 @@
         "kartik-v/yii2-widgets": "*",
         "yurkinx/yii2-image": "dev-master",
         "2amigos/yii2-date-picker-widget" : "~1.0",
-        "2amigos/yii2-gallery-widget" : "*"
+        "2amigos/yii2-gallery-widget" : "*",
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "components/font-awesome": "^4.3"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
