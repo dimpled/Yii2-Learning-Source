@@ -1,5 +1,5 @@
 <?php $this->beginContent('@agency/views/layouts/_base.php'); ?>
-<?= $this->render('header.php',['class'=>'navbar-shrink']) ?>
+<?= $this->render('_header.php',['class'=>'navbar-shrink']) ?>
 
  <section class="pages" >
         <div class="container">
