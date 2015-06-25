@@ -1,5 +1,7 @@
 <?php
+use yii\web\View;
 use yii\helpers\Html;
+use yii\bootstrap\BootstrapAsset;
 
 /* @var $this yii\web\View */
 $this->title = 'About';

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4f7628f84d277d1fa3d8d274fb2adf1c",
+    "hash": "b2e52676a7fccd6e6b320c2b5f9f5491",
     "packages": [
         {
             "name": "2amigos/yii2-date-picker-widget",
@@ -674,17 +674,121 @@
             "time": "2015-01-26 11:26:16"
         },
         {
-            "name": "dmstr/yii2-adminlte-asset",
-            "version": "2.1.1",
+            "name": "dektrium/yii2-user",
+            "version": "v0.9.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
-                "reference": "49c69eab422ada4295ece97279e5dd50e37d34be"
+                "url": "https://github.com/dektrium/yii2-user.git",
+                "reference": "891fe6c3957bde7f3a7893775fd304fc84140599"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/49c69eab422ada4295ece97279e5dd50e37d34be",
-                "reference": "49c69eab422ada4295ece97279e5dd50e37d34be",
+                "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/891fe6c3957bde7f3a7893775fd304fc84140599",
+                "reference": "891fe6c3957bde7f3a7893775fd304fc84140599",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0",
+                "yiisoft/yii2-authclient": "~2.0",
+                "yiisoft/yii2-bootstrap": "~2.0",
+                "yiisoft/yii2-jui": "~2.0",
+                "yiisoft/yii2-swiftmailer": "~2.0"
+            },
+            "require-dev": {
+                "codeception/aspect-mock": "*",
+                "codeception/specify": "*",
+                "codeception/verify": "*",
+                "yiisoft/yii2-codeception": "~2.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "dektrium\\user\\Bootstrap",
+                "branch-alias": {
+                    "dev-master": "0.9.x-dev",
+                    "dev-develop": "1.0.x-dev"
+                },
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dektrium\\user\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Erofeev",
+                    "email": "dmeroff@gmail.com",
+                    "homepage": "http://dmeroff.ru"
+                }
+            ],
+            "description": "Flexible user registration and authentication module for Yii2",
+            "keywords": [
+                "User management",
+                "dektrium",
+                "yii2",
+                "yii2-user"
+            ],
+            "time": "2015-04-06 09:21:39"
+        },
+        {
+            "name": "dixonsatit/yii2-thai-year-formatter",
+            "version": "0.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dixonsatit/yii2-thai-year-formatter.git",
+                "reference": "0bf46d9a56e6b150660bedce24f50c65126a2033"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dixonsatit/yii2-thai-year-formatter/zipball/0bf46d9a56e6b150660bedce24f50c65126a2033",
+                "reference": "0bf46d9a56e6b150660bedce24f50c65126a2033",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "dixonsatit\\thaiYearFormatter\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "satit seethaphon",
+                    "email": "dixonsatit@gmail.com"
+                }
+            ],
+            "description": "Convert Year to Thai Buddhist Era Year",
+            "keywords": [
+                "extension",
+                "yii2"
+            ],
+            "time": "2015-06-25 02:59:30"
+        },
+        {
+            "name": "dmstr/yii2-adminlte-asset",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
+                "reference": "c5d2ea94209a2b087348ea9ee8fda11eedf943b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/c5d2ea94209a2b087348ea9ee8fda11eedf943b6",
+                "reference": "c5d2ea94209a2b087348ea9ee8fda11eedf943b6",
                 "shasum": ""
             },
             "require": {
@@ -725,7 +829,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2015-06-17 03:09:25"
+            "time": "2015-06-25 01:41:38"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -773,16 +877,16 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "v4.2.1",
+            "version": "v4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "6ca9f207ad33deeb8556cbdd762182678c67bf10"
+                "reference": "963ab33aad3bceebe906437382e1a5aaa05ae754"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/6ca9f207ad33deeb8556cbdd762182678c67bf10",
-                "reference": "6ca9f207ad33deeb8556cbdd762182678c67bf10",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/963ab33aad3bceebe906437382e1a5aaa05ae754",
+                "reference": "963ab33aad3bceebe906437382e1a5aaa05ae754",
                 "shasum": ""
             },
             "type": "library",
@@ -817,20 +921,20 @@
                 "progress",
                 "upload"
             ],
-            "time": "2015-06-14 19:58:04"
+            "time": "2015-06-18 14:51:09"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
-            "version": "v3.5.2",
+            "version": "v3.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-star-rating.git",
-                "reference": "8ae690a192a18d2cab46c2d8aa3455b18092f6ed"
+                "reference": "bd9c52db6ac71cb270620c1aee601d142ab2cc00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/8ae690a192a18d2cab46c2d8aa3455b18092f6ed",
-                "reference": "8ae690a192a18d2cab46c2d8aa3455b18092f6ed",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/bd9c52db6ac71cb270620c1aee601d142ab2cc00",
+                "reference": "bd9c52db6ac71cb270620c1aee601d142ab2cc00",
                 "shasum": ""
             },
             "type": "library",
@@ -841,7 +945,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -858,20 +962,20 @@
                 "jquery",
                 "star"
             ],
-            "time": "2015-05-10 19:28:14"
+            "time": "2015-06-18 14:42:46"
         },
         {
             "name": "kartik-v/dependent-dropdown",
-            "version": "v1.4.1",
+            "version": "v1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/dependent-dropdown.git",
-                "reference": "a938210be3276606b1d81d82776aff0e4962d3c9"
+                "reference": "5af96f871606fc75aa8f3a3b34b01c8fe56345fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/a938210be3276606b1d81d82776aff0e4962d3c9",
-                "reference": "a938210be3276606b1d81d82776aff0e4962d3c9",
+                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/5af96f871606fc75aa8f3a3b34b01c8fe56345fd",
+                "reference": "5af96f871606fc75aa8f3a3b34b01c8fe56345fd",
                 "shasum": ""
             },
             "type": "library",
@@ -900,7 +1004,7 @@
                 "option",
                 "select"
             ],
-            "time": "2015-05-22 12:25:10"
+            "time": "2015-06-18 15:04:37"
         },
         {
             "name": "kartik-v/mpdf",
@@ -1001,16 +1105,16 @@
         },
         {
             "name": "kartik-v/yii2-grid",
-            "version": "v3.0.3",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-grid.git",
-                "reference": "5efc485e98fbc795d7d9e64639cb157427982d56"
+                "reference": "8d596b9e5458291786677618b7fe9d5b84de4aa5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/5efc485e98fbc795d7d9e64639cb157427982d56",
-                "reference": "5efc485e98fbc795d7d9e64639cb157427982d56",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/8d596b9e5458291786677618b7fe9d5b84de4aa5",
+                "reference": "8d596b9e5458291786677618b7fe9d5b84de4aa5",
                 "shasum": ""
             },
             "require": {
@@ -1041,7 +1145,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-06-16 05:04:27"
+            "time": "2015-06-24 05:23:50"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -2082,6 +2186,51 @@
             "time": "2014-11-09 19:54:17"
         },
         {
+            "name": "miloschuman/yii2-highcharts-widget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/miloschuman/yii2-highcharts.git",
+                "reference": "695ab0ed747d7dddcd59ab495f7ca8927aeeaa97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/miloschuman/yii2-highcharts/zipball/695ab0ed747d7dddcd59ab495f7ca8927aeeaa97",
+                "reference": "695ab0ed747d7dddcd59ab495f7ca8927aeeaa97",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "miloschuman\\highcharts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Milo Schuman",
+                    "email": "miloschuman@gmail.com"
+                }
+            ],
+            "description": "Highcharts widget for Yii 2 Framework.",
+            "homepage": "https://github.com/miloschuman/yii2-highcharts",
+            "keywords": [
+                "extension",
+                "highcharts",
+                "highmaps",
+                "highstock",
+                "widget",
+                "yii2"
+            ],
+            "time": "2015-06-22 10:36:47"
+        },
+        {
             "name": "phpoffice/phpexcel",
             "version": "1.8.0",
             "source": {
@@ -2140,16 +2289,16 @@
         },
         {
             "name": "rmrevin/yii2-fontawesome",
-            "version": "2.10.1",
+            "version": "2.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rmrevin/yii2-fontawesome.git",
-                "reference": "4315b9a83343fb2217a0018d974e9dbeb2d34a1d"
+                "reference": "ce4dd62a048090f3d98822d4bc9401bfcdde1f98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/4315b9a83343fb2217a0018d974e9dbeb2d34a1d",
-                "reference": "4315b9a83343fb2217a0018d974e9dbeb2d34a1d",
+                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/ce4dd62a048090f3d98822d4bc9401bfcdde1f98",
+                "reference": "ce4dd62a048090f3d98822d4bc9401bfcdde1f98",
                 "shasum": ""
             },
             "require": {
@@ -2188,7 +2337,7 @@
                 "font",
                 "yii"
             ],
-            "time": "2015-05-09 08:36:03"
+            "time": "2015-06-23 13:06:14"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2330,6 +2479,54 @@
                 "yii2"
             ],
             "time": "2015-05-10 20:09:47"
+        },
+        {
+            "name": "yiisoft/yii2-authclient",
+            "version": "2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-authclient.git",
+                "reference": "cbe801a7d8bb477be15cb0fbdaa75ca5bdfeb91b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/cbe801a7d8bb477be15cb0fbdaa75ca5bdfeb91b",
+                "reference": "cbe801a7d8bb477be15cb0fbdaa75ca5bdfeb91b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "yiisoft/yii2": ">=2.0.4"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\authclient\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "External authentication via OAuth and OpenID for the Yii framework",
+            "keywords": [
+                "OpenId",
+                "auth",
+                "oauth",
+                "yii2"
+            ],
+            "time": "2015-05-10 22:07:56"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -2534,12 +2731,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yurkinx/yii2-image.git",
-                "reference": "a99384b9f856798c731d76ce78db0674b8ad7414"
+                "reference": "0d6d261bf9c2dc35e9ad8c5cc56793580b74eefd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yurkinx/yii2-image/zipball/a99384b9f856798c731d76ce78db0674b8ad7414",
-                "reference": "a99384b9f856798c731d76ce78db0674b8ad7414",
+                "url": "https://api.github.com/repos/yurkinx/yii2-image/zipball/0d6d261bf9c2dc35e9ad8c5cc56793580b74eefd",
+                "reference": "0d6d261bf9c2dc35e9ad8c5cc56793580b74eefd",
                 "shasum": ""
             },
             "require": {
@@ -2569,7 +2766,7 @@
                 "image",
                 "yii2"
             ],
-            "time": "2015-05-19 19:10:47"
+            "time": "2015-06-24 13:41:22"
         }
     ],
     "packages-dev": [
@@ -2882,7 +3079,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "yurkinx/yii2-image": 20
+        "yurkinx/yii2-image": 20,
+        "miloschuman/yii2-highcharts-widget": 20,
+        "dektrium/yii2-user": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

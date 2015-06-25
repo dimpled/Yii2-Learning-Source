@@ -39,7 +39,7 @@ use yii\helpers\VarDumper;
 <div class="page-header">
   <h4>ข้อมูลส่วนตัว </h4>
 </div>
- <?= $form->field($model, 'token_forupload')->hiddenInput() ?>
+ <?= $form->field($model, 'token_forupload')->hiddenInput()->label(false); ?>
 <div class="row">
     <div class="col-xs-4 col-sm-2 col-md-2">
         <?= $form->field($model, 'title')->widget(TypeaheadBasic::classname(), [

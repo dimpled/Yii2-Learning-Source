@@ -27,7 +27,10 @@
         "2amigos/yii2-date-picker-widget" : "~1.0",
         "2amigos/yii2-gallery-widget" : "*",
         "dmstr/yii2-adminlte-asset": "2.*",
-        "components/font-awesome": "^4.3"
+        "components/font-awesome": "^4.3",
+        "miloschuman/yii2-highcharts-widget": "dev-master",
+        "dixonsatit/yii2-thai-year-formatter": "*",
+        "dektrium/yii2-user": "0.9.*@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

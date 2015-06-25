@@ -48,7 +48,10 @@ class SiteController extends Controller
     }
 
     public function actionIndex()
-    {
+    {   
+        //test send mail
+        //$this->sendMail('ikkdev@gmail.com','Your Fullname');
+
         return $this->render('index');
     }
 
@@ -92,5 +95,18 @@ class SiteController extends Controller
     public function actionAbout()
     {
        return $this->render('about');
+    }
+
+    public function sendMail($email,$fullname){
+         Yii::$app->mailer
+         ->compose('@app/mail/layouts/register',[
+            'fullname'=>$fullname
+          ])
+         ->setFrom(['seminar@kkh.go.th'=>'Khon Kaen Hospital'])
+         ->setTo($email)
+         ->setSubject('ยินดีต้อนรับสู่งานประชุมวิชาการโรงพยาบาลขอนแก่น 2558')
+         ->attach(Yii::getAlias('@webroot').'/attach/'.'brochure.pdf')
+         //->attach(Yii::getAlias('@webroot').'/attach/'.'Poster.pdf')
+         ->send();
     }
 }

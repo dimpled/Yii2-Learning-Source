@@ -11,6 +11,13 @@ $config = [
         '@agency' => '@app/themes/agency',
     ],
     'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableUnconfirmedLogin' => true,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['admin']
+        ],
        'gridview' =>  [
             'class' => '\kartik\grid\Module'
             // enter optional module parameters below - only if you need to  
@@ -21,14 +28,17 @@ $config = [
         ]
     ],
     'components' => [
-        'view' => [
-             'theme' => [
-                 'pathMap' => [
-                    '@app/views' => '@agency/views', // uncomment active agency theme
-                    //'@app/views' => '@app/themes/adminlte' // uncomment active adminlte theme
-                 ],
-             ],
+        'thaiYearFormatter'=>[
+            'class'=>'app\components\ThaiYearFormatter'
         ],
+        // 'view' => [
+        //      'theme' => [
+        //          'pathMap' => [
+        //             '@app/views' => '@agency/views', // uncomment active agency theme
+        //             //'@app/views' => '@app/themes/adminlte' // uncomment active adminlte theme
+        //          ],
+        //      ],
+        // ],
         'image' => [
                 'class' => 'yii\image\ImageDriver',
                 'driver' => 'GD',  //GD or Imagick
@@ -44,6 +54,7 @@ $config = [
                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                    ['class' => 'yii\rest\UrlRule', 'controller' => 'location', 'except' => ['delete','GET', 'HEAD','POST','OPTIONS'], 'pluralize'=>false],
+                   '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
            ],
         ],
         'request' => [
@@ -58,18 +69,25 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            //'identityClass' => 'app\models\User',
+            'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+           'class' => 'yii\swiftmailer\Mailer',
+                'viewPath' => '@app/mail',
+                'useFileTransport' => false,
+                'transport' => [
+                    'class' => 'Swift_SmtpTransport',
+                    'host' => 'smtp.gmail.com',
+                    'username' => 'dixonsatit@gmail.com',
+                    'password' => '46252049satitseethaphon',
+                    'port' => '587',
+                    'encryption' => 'tls',
+                ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

@@ -38,11 +38,17 @@ AppAsset::register($this);
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'About', 'url' => ['/site/about']],
                     ['label' => 'Contact', 'url' => ['/site/contact']],
+                    
+                    
+
                     Yii::$app->user->isGuest ?
-                        ['label' => 'Login', 'url' => ['/site/login']] :
-                        ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                            'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post']],
+                    ['label' => 'Sign in', 'url' => ['/user/security/login']] :
+                    ['label' => 'Account(' . Yii::$app->user->identity->username . ')', 'items'=>[
+                        ['label' => 'Profile', 'url' => ['/user/settings/profile']],
+                        ['label' => 'Account', 'url' => ['/user/settings/account']],
+                        ['label' => 'Logout', 'url' => ['/user/security/logout'],'linkOptions' => ['data-method' => 'post']],
+                    ]],
+                    ['label' => 'Register', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest],
                 ],
             ]);
             NavBar::end();
