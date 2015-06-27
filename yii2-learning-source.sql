@@ -11,7 +11,7 @@
  Target Server Version : 50622
  File Encoding         : utf-8
 
- Date: 03/20/2015 01:46:34 AM
+ Date: 06/27/2015 13:22:20 PM
 */
 
 SET NAMES utf8;
@@ -118,13 +118,38 @@ CREATE TABLE `employee` (
   `token_forupload` varchar(100) DEFAULT NULL,
   `count_download_resume` int(11) DEFAULT NULL COMMENT 'นับจำนวนที่ download resume',
   PRIMARY KEY (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `employee`
 -- ----------------------------
 BEGIN;
-INSERT INTO `employee` VALUES ('1', '1', 'นางสาว', 'สาธิต', 'สีถาพล', '44/54 ม.2 หมู่บ้านกัลยารัตน์ 3 ถนน ชาตะผดุง', '40000', '2015-03-20', 'dixonsatit@gmail.com', '09-1419-2801', '2015-03-20 01:45:51', '2015-03-20 01:26:04', 'นักวิชาการคอมพิวเตอร์', '6363663', null, 'http://www.dimpled.me', 'Objective C,JavaScript,SQL,C++,C,Assembly', 'US', '31', '7 ปี', '6474748484848', '2', '28', '393', '3491', 'facebook,twiter,google+,tumblr', '8cc147dfb163f6c57a1f9b5a6853a091.pdf', 'iOOxVkSwrurplsO0DicB-K', null);
+INSERT INTO `employee` VALUES ('1', '1', 'นาย', 'สาธิต', 'สีถาพล', '44/54 ม.2 หมู่บ้านกัลยารัตน์ 3 ถนน ชาตะผดุง', '40000', '1984-02-19', 'dixonsatit@gmail.com', '09-1419-2801', '2015-03-20 10:32:48', '2015-03-20 01:26:04', 'นักวิชาการคอมพิวเตอร์', '73000', null, 'http://www.dimpled.me', 'Objective C,PHP,SQL,FoxPro,ASP', 'TH', '31', '7 ปี', '7474747474774', '2', '28', '393', '3491', 'facebook,twiter,google+', '8cc147dfb163f6c57a1f9b5a6853a091.pdf', 'iOOxVkSwrurplsO0DicB-K', '2');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `freelance`
+-- ----------------------------
+DROP TABLE IF EXISTS `freelance`;
+CREATE TABLE `freelance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref` varchar(50) DEFAULT NULL COMMENT 'หลายเลข referent สำหรับอัพโหลดไฟล์ ajax',
+  `title` varchar(255) DEFAULT NULL COMMENT 'ชื่องาน',
+  `description` text COMMENT 'รายละเอียด',
+  `covenant` varchar(255) DEFAULT NULL COMMENT 'หนังสือสัญญา',
+  `docs` text COMMENT 'เอกสารประกอบ',
+  `start_date` date DEFAULT NULL COMMENT 'วันที่เริ่มสัญญา',
+  `end_date` date DEFAULT NULL COMMENT 'วันที่สิ้นสุดสัญญา',
+  `success_date` date DEFAULT NULL COMMENT 'งานเสร็จวันที่',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'สร้างวันที่',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `freelance`
+-- ----------------------------
+BEGIN;
+INSERT INTO `freelance` VALUES ('19', 'Foq7osKQ9Q89V8aqWod6me', 'ระบบงานห้อง lab', 'จัดเก็บข้อมูลการส่งตรวจ', '{\"3ee3d1265f1b4b40152727da419831e4.pdf\":\"doc (1).pdf\"}', '{\"d32f4029fd3570b8684a34fae9552fb5.pdf\":\"20100123dodugi-alt-100124141539-phpapp02 (1) (1).pdf\",\"3ee3d1265f1b4b40152727da419831e4.pdf\":\"doc (1).pdf\"}', '2015-03-29', '2015-03-30', '2015-03-30', '2015-03-29 23:24:36');
 COMMIT;
 
 -- ----------------------------
@@ -177,6 +202,136 @@ INSERT INTO `location` VALUES ('10151', 'Ukraine', 'Fastiv', '50.0833333', '29.9
 COMMIT;
 
 -- ----------------------------
+--  Table structure for `migration`
+-- ----------------------------
+DROP TABLE IF EXISTS `migration`;
+CREATE TABLE `migration` (
+  `version` varchar(180) NOT NULL,
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `migration`
+-- ----------------------------
+BEGIN;
+INSERT INTO `migration` VALUES ('m000000_000000_base', '1429928899'), ('m000000_000001_CreateRbacTables', '1429929043'), ('m000000_000002_CreateUserTables', '1429941926'), ('m000000_000003_ChangeTokenColumn', '1429941926'), ('m140209_132017_init', '1435203411'), ('m140403_174025_create_account_table', '1435203411'), ('m140504_113157_update_tables', '1435203411'), ('m140504_130429_create_token_table', '1435203411'), ('m140830_171933_fix_ip_field', '1435203411'), ('m140830_172703_change_account_table_name', '1435203411'), ('m141222_110026_update_ip_field', '1435203411');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `photo_library`
+-- ----------------------------
+DROP TABLE IF EXISTS `photo_library`;
+CREATE TABLE `photo_library` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref` varchar(50) DEFAULT NULL COMMENT 'เลข fk กับ upload ใช้กับ upload ajax',
+  `event_name` varchar(255) DEFAULT NULL COMMENT 'ชื่องาน',
+  `detail` text COMMENT 'รายละเอียด',
+  `start_date` datetime DEFAULT NULL COMMENT 'วันที่เริ่มถ่ายภาพ',
+  `end_date` datetime DEFAULT NULL COMMENT 'วันที่ถ่ายภาพเสร็จ',
+  `location` varchar(255) DEFAULT NULL COMMENT 'สถานที่',
+  `customer_name` varchar(150) DEFAULT NULL COMMENT 'ชื่อลูกค้า',
+  `customer_mobile_phone` varchar(20) DEFAULT NULL COMMENT 'เบอร์โทร',
+  `province_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ref` (`ref`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `photo_library`
+-- ----------------------------
+BEGIN;
+INSERT INTO `photo_library` VALUES ('3', '6f6VTlqDp-V6nrU4KAMjh1', 'ไปเชียงคาน', 'ไปเที่ยวเชียงคาน', '2015-03-29 00:00:00', '2015-03-29 00:00:00', 'แก่งคุดคู้ เชียงคาน', 'คุณสุกัญญา ยัพราษฎร์', '091-4192801', '30');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `profile`
+-- ----------------------------
+DROP TABLE IF EXISTS `profile`;
+CREATE TABLE `profile` (
+  `user_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `public_email` varchar(255) DEFAULT NULL,
+  `gravatar_email` varchar(255) DEFAULT NULL,
+  `gravatar_id` varchar(32) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `bio` text,
+  PRIMARY KEY (`user_id`),
+  CONSTRAINT `fk_user_profile` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `profile`
+-- ----------------------------
+BEGIN;
+INSERT INTO `profile` VALUES ('1', null, null, 'dixonsatit@gmail.com', '7037e0cdf96cd3d4ad39b6c32ca29bd7', null, null, null);
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `profile_field`
+-- ----------------------------
+DROP TABLE IF EXISTS `profile_field`;
+CREATE TABLE `profile_field` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `type_id` int(11) NOT NULL,
+  `position` int(11) NOT NULL,
+  `required` tinyint(1) NOT NULL,
+  `configuration` text,
+  `error_message` varchar(255) DEFAULT NULL,
+  `default_value` varchar(255) DEFAULT NULL,
+  `read_only` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ProfileField_name_uk` (`name`),
+  KEY `ProfileField_type_ix` (`type_id`),
+  CONSTRAINT `ProfileField_type_fk` FOREIGN KEY (`type_id`) REFERENCES `profile_field_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `profile_field`
+-- ----------------------------
+BEGIN;
+INSERT INTO `profile_field` VALUES ('1', 'first_name', 'First Name', '2', '1', '0', null, null, null, '0'), ('2', 'last_name', 'Last Name', '2', '2', '0', null, null, null, '0'), ('3', 'website', 'Website', '2', '3', '0', null, null, null, '0');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `profile_field_type`
+-- ----------------------------
+DROP TABLE IF EXISTS `profile_field_type`;
+CREATE TABLE `profile_field_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ProfileFieldType_name_uk` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `profile_field_type`
+-- ----------------------------
+BEGIN;
+INSERT INTO `profile_field_type` VALUES ('1', 'integer', 'Integer'), ('2', 'string', 'String'), ('3', 'text', 'Text'), ('4', 'boolean', 'Boolean'), ('5', 'decimal', 'Decimal'), ('6', 'money', 'Money'), ('7', 'date', 'Date only'), ('8', 'datetime', 'Date and Time'), ('9', 'time', 'Time only'), ('10', 'url', 'Url Address'), ('11', 'email', 'Email'), ('12', 'lookup', 'Lookup'), ('13', 'list', 'List');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `profile_field_value`
+-- ----------------------------
+DROP TABLE IF EXISTS `profile_field_value`;
+CREATE TABLE `profile_field_value` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `field_id` int(11) NOT NULL,
+  `value` text,
+  PRIMARY KEY (`id`),
+  KEY `Profile_field_ix` (`field_id`),
+  KEY `Profile_user_fk` (`user_id`),
+  CONSTRAINT `Profile_field_fk` FOREIGN KEY (`field_id`) REFERENCES `profile_field` (`id`),
+  CONSTRAINT `Profile_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user_` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 --  Table structure for `province`
 -- ----------------------------
 DROP TABLE IF EXISTS `province`;
@@ -196,6 +351,42 @@ INSERT INTO `province` VALUES ('1', '10', 'กรุงเทพมหานค�
 COMMIT;
 
 -- ----------------------------
+--  Table structure for `social_account`
+-- ----------------------------
+DROP TABLE IF EXISTS `social_account`;
+CREATE TABLE `social_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `provider` varchar(255) NOT NULL,
+  `client_id` varchar(255) NOT NULL,
+  `data` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `account_unique` (`provider`,`client_id`),
+  KEY `fk_user_account` (`user_id`),
+  CONSTRAINT `fk_user_account` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `token`
+-- ----------------------------
+DROP TABLE IF EXISTS `token`;
+CREATE TABLE `token` (
+  `user_id` int(11) NOT NULL,
+  `code` varchar(32) NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `type` smallint(6) NOT NULL,
+  UNIQUE KEY `token_unique` (`user_id`,`code`,`type`),
+  CONSTRAINT `fk_user_token` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `token`
+-- ----------------------------
+BEGIN;
+INSERT INTO `token` VALUES ('1', 'NMdk4T8YFgDwEpGzu5q_YUKiR5ikpM5d', '1435206956', '0');
+COMMIT;
+
+-- ----------------------------
 --  Table structure for `uploads`
 -- ----------------------------
 DROP TABLE IF EXISTS `uploads`;
@@ -207,13 +398,69 @@ CREATE TABLE `uploads` (
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `type` int(11) DEFAULT NULL COMMENT 'ประเภท',
   PRIMARY KEY (`upload_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `uploads`
 -- ----------------------------
 BEGIN;
-INSERT INTO `uploads` VALUES ('1', 'iOOxVkSwrurplsO0DicB-K', '6800806544_9e6a68e358_k.jpg', '2426b464a7257475646edb778e887ab2.jpg', '2015-03-20 01:25:32', null), ('2', 'iOOxVkSwrurplsO0DicB-K', '6946914191_620c84376d_k.jpg', '54d2710a3bd933c5ca6671b08b7c1b5a.jpg', '2015-03-20 01:25:37', null), ('4', 'iOOxVkSwrurplsO0DicB-K', 'DSC05017.jpg', 'e10338ba8bac7041bdd357cb915018b0.jpg', '2015-03-20 01:26:04', null), ('15', 'iOOxVkSwrurplsO0DicB-K', 'dimpos-hompage.png', 'ed7d6a1fbbba23106fda116810570a19.png', '2015-03-20 01:36:32', null);
+INSERT INTO `uploads` VALUES ('21', 'iOOxVkSwrurplsO0DicB-K', 'DSC05017.jpg', '63b9ec8d31e909eedea284d346983e17.jpg', '2015-03-20 02:10:43', null), ('22', 'iOOxVkSwrurplsO0DicB-K', 'dimple-logo-wallper.png', 'b582f9a54aa139c40ef8bff7bf1aa34f.png', '2015-03-20 02:10:44', null), ('23', 'iOOxVkSwrurplsO0DicB-K', 'DSC05019.jpg', '3898b672c6c7d521d4ff0b7567e16acf.jpg', '2015-03-20 02:10:45', null), ('24', 'iOOxVkSwrurplsO0DicB-K', 'DSC05018.jpg', '6773ca8feb5a999ddde2cf9406e07ab3.jpg', '2015-03-20 02:10:45', null), ('32', 'iOOxVkSwrurplsO0DicB-K', '20100123dodugi-alt-100124141539-phpapp02.pdf', '75cf33f077cf87f228dd1463aea08261.pdf', '2015-03-23 10:38:25', null), ('38', 'ulqHch76LQGjKHHTQGjnjM', 'images (4).jpg', 'a5c3fab2e36e83fdc9ef5de68773e275.jpg', '2015-03-27 22:05:03', null), ('39', 'ulqHch76LQGjKHHTQGjnjM', 'images (6) (1).jpg', '34633deaa8795c249a7e28d6b7b2a666.jpg', '2015-03-27 22:05:03', null), ('40', 'ulqHch76LQGjKHHTQGjnjM', 'images (6).jpg', 'a0b1295cc902e1173f98d2bb21e9ce99.jpg', '2015-03-27 22:05:03', null), ('41', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0003.jpg', '4345002b4f8b59366cdcfda567139dc7.jpg', '2015-03-29 11:29:54', null), ('42', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0002.jpg', '6795af6aa96dd0fcb16a1d2402fd069a.jpg', '2015-03-29 11:29:54', null), ('43', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0004.jpg', '6612805742ff5f74fb1a425b0c078d55.jpg', '2015-03-29 11:29:54', null), ('44', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0001.jpg', '0c72bb8fef418d71b1de37a47bb688f5.jpg', '2015-03-29 11:29:54', null), ('45', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0006.jpg', 'eddb4df3b2b6437b2a1193c7cc871636.jpg', '2015-03-29 11:29:54', null), ('46', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0005.jpg', '0b89d9df62d23dc62aab2d58736f6d6d.jpg', '2015-03-29 11:29:55', null), ('47', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0008.jpg', 'bfe2af5b7bec99eeacfbca4ca7571d3e.jpg', '2015-03-29 11:29:57', null), ('48', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0007.jpg', '39b90b01f97617bf280fbbddfd76f9b8.jpg', '2015-03-29 11:29:57', null), ('49', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0009.jpg', 'c2159c08d7670d7ed8231ffeef3e1b50.jpg', '2015-03-29 11:29:57', null), ('50', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0010.jpg', '26f8f0736676f645a115ac35eaf410f2.jpg', '2015-03-29 11:29:57', null), ('51', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0011.jpg', '07ec56dd42fbb2fa3a8298663fa75c5f.jpg', '2015-03-29 11:29:57', null), ('52', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0012.jpg', 'ebf0715269f0477071fd9fa103827c77.jpg', '2015-03-29 11:29:57', null), ('53', 'TGW9_0pt3mZI9nZR_KGWh5', 'DSCN0013.jpg', '14015fc5a2f8e97170a8d391ada5c23f.jpg', '2015-03-29 11:29:58', null), ('54', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0001.jpg', '57b260bd7413868b0f7bd810caeb91aa.jpg', '2015-03-29 11:38:15', null), ('55', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0002.jpg', '6720248638a1459241bf52fd87280379.jpg', '2015-03-29 11:38:15', null), ('56', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0006.jpg', '9275f9f03959eab63300d5a09260a84d.jpg', '2015-03-29 11:38:15', null), ('57', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0003.jpg', '0d46343b038f6bc1b415dac7eaf7c090.jpg', '2015-03-29 11:38:15', null), ('58', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0004.jpg', 'cf6eaf0d71e988249128470e1c3b4449.jpg', '2015-03-29 11:38:15', null), ('59', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0005.jpg', '92ffe44313f8d01de26486b7a1c232d2.jpg', '2015-03-29 11:38:15', null), ('60', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0008.jpg', 'b65b4200f3d9ff9b44ef737037c267a5.jpg', '2015-03-29 11:38:18', null), ('61', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0007.jpg', '31582d80c131b5b97a1ea36d5ad5db1d.jpg', '2015-03-29 11:38:18', null), ('62', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0009.jpg', '9feed510329885a9c3c10033da3d135b.jpg', '2015-03-29 11:38:18', null), ('63', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0010.jpg', 'ccc0ecf6abb712db1287d5cbf52fb938.jpg', '2015-03-29 11:38:18', null), ('64', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0011.jpg', 'beeb548ad929ed703eb29894cced6dc4.jpg', '2015-03-29 11:38:18', null), ('65', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0012.jpg', 'dad9f2c6f4b65e85dc8f6b1531697456.jpg', '2015-03-29 11:38:18', null), ('66', 'B8NCq0YUMW2tXLCiIT6K00', 'DSCN0013.jpg', '7db6f5519a53efed44a45696c0156830.jpg', '2015-03-29 11:38:19', null), ('67', 'gGLS1cqznyya6YIxbd6d39', 'DSCN0013.jpg', '8f5d6cc81108df308c560c962bdad30a.jpg', '2015-03-29 11:40:21', null), ('68', 'gGLS1cqznyya6YIxbd6d39', 'DSCN0011.jpg', 'e8b656a1dc898713dfcf1ff3c913f3cc.jpg', '2015-03-29 11:40:21', null), ('69', 'gGLS1cqznyya6YIxbd6d39', 'DSCN0012.jpg', '8181408f983071fbe07bcc17db9504c1.jpg', '2015-03-29 11:40:21', null), ('81', '6f6VTlqDp-V6nrU4KAMjh1', 'DSCN2624.jpg', 'ea8d13a73df757b0839c7b649e65ca52.jpg', '2015-03-29 22:26:33', null), ('82', '6f6VTlqDp-V6nrU4KAMjh1', 'DSCN2625.jpg', 'b86a108fa450c5fb3d9c55f87661fd09.jpg', '2015-03-29 22:26:34', null), ('84', '6f6VTlqDp-V6nrU4KAMjh1', 'DSCN2627.jpg', '181880c3d439cc64ad25e1e9f69568fd.jpg', '2015-03-29 22:26:35', null), ('86', '6f6VTlqDp-V6nrU4KAMjh1', 'DSCN2629.jpg', 'b86b5d85f6f7b51ec4fbaff8c5b3ae19.jpg', '2015-03-29 22:26:37', null), ('89', '6f6VTlqDp-V6nrU4KAMjh1', 'DSCN2632.jpg', 'df3dbb2ef010a4ff19e6497a1ce124e6.jpg', '2015-03-29 22:26:39', null), ('92', '6f6VTlqDp-V6nrU4KAMjh1', 'DSCN2635.jpg', '5173dfd54c720768e8f36307b7f4f2bb.jpg', '2015-03-29 22:26:41', null), ('94', '6f6VTlqDp-V6nrU4KAMjh1', 'DSCN2637.jpg', '18fce2b7964373337fa7eada41bbbd6d.jpg', '2015-03-29 22:26:42', null), ('100', '6f6VTlqDp-V6nrU4KAMjh1', 'DSCN2656.jpg', '135986dcf78c72bb7e738992248d6833.jpg', '2015-03-29 22:26:46', null);
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `user`
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(25) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password_hash` varchar(60) NOT NULL,
+  `auth_key` varchar(32) NOT NULL,
+  `confirmed_at` int(11) DEFAULT NULL,
+  `unconfirmed_email` varchar(255) DEFAULT NULL,
+  `blocked_at` int(11) DEFAULT NULL,
+  `registration_ip` varchar(45) DEFAULT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  `flags` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_unique_username` (`username`),
+  UNIQUE KEY `user_unique_email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `user`
+-- ----------------------------
+BEGIN;
+INSERT INTO `user` VALUES ('1', 'admin', 'dixonsatit@gmail.com', '$2y$12$LOJTT3uZlMZeJPh6crkuxOrkFR0AiXYU45ASwbOo3Fs39mPUEJGAW', 'cvHiM7kFUIajP2Bvnw4MgvBvyY7h0xbs', null, null, null, '127.0.0.1', '1435206956', '1435206956', '0');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `user_`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_`;
+CREATE TABLE `user_` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(64) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `password_hash` varchar(128) NOT NULL,
+  `password_reset_token` varchar(48) DEFAULT NULL,
+  `auth_key` varchar(128) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '2',
+  `last_visit_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `delete_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  KEY `User_status_ix` (`status`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `user_`
+-- ----------------------------
+BEGIN;
+INSERT INTO `user_` VALUES ('1', 'admin', 'dixonsatit@gmail.com', '$2y$13$KYklePWbP6DUmBV6ZzH4Ru7tSj7qUhyRLBloAWidWFNoqGwULA57m', null, '-LmZ52nRmh-13sAUMDJOPMGvw-JcCcda', '2', '2015-04-25 13:07:42', '2015-04-25 13:05:26', '2015-04-25 13:05:26', '0000-00-00 00:00:00');
 COMMIT;
 
 -- ----------------------------
