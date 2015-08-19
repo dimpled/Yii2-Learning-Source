@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'emp_id',
-            
+
             'title',
             'name',
             'surname',
@@ -46,29 +46,61 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'expire_date',
             // 'website',
             // 'skill',
-
             [
-                'class' => 'yii\grid\ActionColumn',
-                'options'=>['style'=>'width:120px;'],
-                'template'=>'<div class="btn-group btn-group-sm" role="group" aria-label="...">{view}{update}{delete}</div>',
-                'buttons'=>[
-                    'view'=>function($url,$model,$key){
-                        return Html::a('<i class="glyphicon glyphicon-eye-open"></i>',$url,['class'=>'btn btn-default']);
-                    }, 
-                    'update'=>function($url,$model,$key){
-                        return Html::a('<i class="glyphicon glyphicon-pencil"></i>',$url,['class'=>'btn btn-default']);
-                    },
-                    'delete'=>function($url,$model,$key){
-                         return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url,[
-                                'title' => Yii::t('yii', 'Delete'),
-                                'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                'data-method' => 'post',
-                                'data-pjax' => '0',
-                                'class'=>'btn btn-default'
-                                ]);
-                    }
+
+              'attribute'=>'skill'
+            ],
+            [
+              'class' => 'yii\grid\ActionColumn',
+              'buttonOptions'=>['class'=>'btn btn-default'],
+              'template'=>'<div class="btn-group btn-group-sm text-center" role="group">{copy} {view} {update} {delete} </div>',
+              'options'=> ['style'=>'width:150px;'],
+              'buttons'=>[
+                'copy' => function($url,$model,$key){
+                    return Html::a('<i class="glyphicon glyphicon-duplicate"></i>',$url,['class'=>'btn btn-default']);
+                  }
                 ]
             ],
+            // [
+            //     'class' => 'yii\grid\ActionColumn',
+            //     'header'=>'Action',
+            //     //'template'=>'{view}',
+            //     'contentOptions'=>[
+            //         'noWrap' => true
+            //     ]
+            // ],
+            // [
+            //     'class' => 'yii\grid\ActionColumn',
+            //     'header'=>'Action',
+            //     'options'=> [
+            //       'style'=>'width:100px;'
+            // ]
+                // 'contentOptions'=>[
+                //     'noWrap' => true
+                // ]
+            //],
+            // [
+            //     'class' => 'yii\grid\ActionColumn',
+            //     'options'=>['style'=>'width:120px;'],
+            //     'template'=>'<div class="btn-group btn-group-sm" role="group" aria-label="...">{view}{update}{delete}</div>',
+            //     'buttons'=>[
+            //         'view'=>function($url,$model,$key){
+            //             return Html::a('<i class="glyphicon glyphicon-eye-open"></i>',$url,['class'=>'btn btn-default']);
+            //         },
+            //         'update'=>function($url,$model,$key){
+            //             return Html::a('<i class="glyphicon glyphicon-pencil"></i>',$url,['class'=>'btn btn-default']);
+            //         },
+            //         'delete'=>function($url,$model,$key){
+            //              return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url,[
+            //                     'title' => Yii::t('yii', 'Delete'),
+            //                     'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+            //                     'data-method' => 'post',
+            //                     'data-pjax' => '0',
+            //                     'class'=>'btn btn-default'
+            //                     ]);
+            //         }
+            //     ]
+            // ],
         ],
     ]); ?>
 

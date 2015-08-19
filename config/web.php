@@ -20,8 +20,8 @@ $config = [
         ],
        'gridview' =>  [
             'class' => '\kartik\grid\Module'
-            // enter optional module parameters below - only if you need to  
-            // use your own export download action or custom translation 
+            // enter optional module parameters below - only if you need to
+            // use your own export download action or custom translation
             // message source
             // 'downloadAction' => 'gridview/export/download',
             // 'i18n' => []
@@ -83,8 +83,8 @@ $config = [
                 'transport' => [
                     'class' => 'Swift_SmtpTransport',
                     'host' => 'smtp.gmail.com',
-                    'username' => 'dixonsatit@gmail.com',
-                    'password' => '46252049satitseethaphon',
+                    'username' => 'email@gmail.com',
+                    'password' => 'xxxxxxxxx',
                     'port' => '587',
                     'encryption' => 'tls',
                 ],

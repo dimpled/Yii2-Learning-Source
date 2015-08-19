@@ -33,9 +33,9 @@ use yii\helpers\VarDumper;
 <div class="employee-form" >
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-   
+
 <?= $form->errorSummary($model); ?>
-    
+
 <div class="page-header">
   <h4>ข้อมูลส่วนตัว </h4>
 </div>
@@ -85,7 +85,7 @@ use yii\helpers\VarDumper;
         'clientOptions'=>[
             'removeMaskOnSubmit'=>true //กรณีไม่ต้องการให้มันบันทึก format ลงไปด้วยเช่น 9-9999-99999-999 ก็จะเป็น 9999999999999
         ]
-    ]) ?>   
+    ]) ?>
     </div>
 
     <div class="col-sm-6 col-md-6">
@@ -94,8 +94,8 @@ use yii\helpers\VarDumper;
        ]); ?>
     </div>
 </div>
-  
-    
+
+
 <div class="page-header">
   <h4>รายละเอียดตำแหน่งงาน </h4>
 </div>
@@ -111,8 +111,8 @@ use yii\helpers\VarDumper;
        <?= $form->field($model, 'experience')->textInput() ?>
     </div>
 </div>
-    
-   
+
+
 <div class="page-header">
   <h4>ข้อมูลสำหรับการติดต่อ </h4>
 </div>
@@ -151,10 +151,10 @@ use yii\helpers\VarDumper;
     </div>
 </div>
 
-    
 
-    
-    
+
+
+
     <div class="row">
     <div class="col-sm-4 col-md-4">
         <?= $form->field($model, 'zip_code')->widget(\yii\widgets\MaskedInput::classname(), [
@@ -177,11 +177,11 @@ use yii\helpers\VarDumper;
     <div class="col-sm-4 col-md-4">
        <?= $form->field($model, 'mobile_phone')->widget(\yii\widgets\MaskedInput::classname(), [
         'mask' => '99-9999-9999',
-    ]) ?>  
+    ]) ?>
     </div>
-   
+
 </div>
-  
+
 <div class="row">
     <div class="col-sm-6 col-md-6">
        <?= $form->field($model, 'email')->textInput(['maxlength' => 150]) ?>
@@ -252,4 +252,3 @@ use yii\helpers\VarDumper;
     <?php ActiveForm::end(); ?>
 
 </div>
-
