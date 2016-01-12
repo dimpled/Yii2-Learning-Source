@@ -47,4 +47,13 @@ class Province extends \yii\db\ActiveRecord
             'GEO_ID' => 'Geo  ID',
         ];
     }
+
+    /**
+     * @inheritdoc
+     * @return ProvinceQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new ProvinceQuery(get_called_class());
+    }
 }

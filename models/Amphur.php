@@ -49,4 +49,13 @@ class Amphur extends \yii\db\ActiveRecord
             'PROVINCE_ID' => 'Province  ID',
         ];
     }
+
+    /**
+     * @inheritdoc
+     * @return AmphurQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new AmphurQuery(get_called_class());
+    }
 }

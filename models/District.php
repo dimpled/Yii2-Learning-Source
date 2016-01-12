@@ -51,4 +51,13 @@ class District extends \yii\db\ActiveRecord
             'GEO_ID' => 'Geo  ID',
         ];
     }
+
+    /**
+     * @inheritdoc
+     * @return DistrictQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new DistrictQuery(get_called_class());
+    }
 }
